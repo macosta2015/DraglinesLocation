@@ -1,22 +1,29 @@
-const express = require('express')
-const { getDb, connectToDb } = require('./db')
-const { ObjectId } = require('mongodb')
+const express = require('express');
+const cors = require('cors'); // Import the cors package
+const { getDb, connectToDb } = require('./db');
+const { ObjectId } = require('mongodb');
 
 // init app & middleware
-const app = express()
-app.use(express.json())
+const app = express();
+app.use(express.json());
+
+// Set up CORS middleware
+app.use(cors({
+  origin: 'http://localhost:3001', // Allow requests from this origin
+  // Other CORS options...
+}));
 
 // db connection
-let db
+let db;
 
 connectToDb((err) => {
-  if(!err){
+  if (!err) {
     app.listen('3000', () => {
-      console.log('app listening on port 3000')
-    })
-    db = getDb()
+      console.log('app listening on port 3000');
+    });
+    db = getDb();
   }
-})
+});
 
 // routes
 // Define a route for the root endpoint ("/")
