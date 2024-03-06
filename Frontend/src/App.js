@@ -30,13 +30,23 @@ function App() {
     return { latitude: 27.994402, longitude: -81.760254 }; // Example coordinates for Florida
   };
 
+  //Updated code 
   const saveCoordinates = async (coordinates) => {
     try {
-      await axios.post('http://localhost:5000/coordinates', coordinates);
+      // Make a POST request to the backend endpoint '/Draglines'
+      await axios.post('http://localhost:3000/Draglines', coordinates); // Update the URL to match your backend endpoint
     } catch (error) {
       console.error('Error saving coordinates:', error);
     }
   };
+  
+  // const saveCoordinates = async (coordinates) => {
+  //   try {
+  //     await axios.post('http://localhost:5000/coordinates', coordinates);
+  //   } catch (error) {
+  //     console.error('Error saving coordinates:', error);
+  //   }
+  // };
 
   return (
     <div className="App">
