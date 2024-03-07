@@ -8,9 +8,13 @@ const app = express();
 app.use(express.json());
 
 // Set up CORS middleware
+// app.use(cors({
+//   origin: 'https://macosta2015.github.io/DraglinesLocation', // Remove the trailing slash
+//   // Other CORS options...
+// }));
 app.use(cors({
-  origin: 'http://localhost:3001', // Allow requests from this origin
-  // Other CORS options...
+  origin: '*', // Remove the trailing slash
+  // Other CORS options...
 }));
 
 // db connection
