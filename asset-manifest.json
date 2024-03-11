@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/DraglinesLocation/static/css/main.e6c13ad2.css",
+    "main.js": "/DraglinesLocation/static/js/main.eeb939fd.js",
+    "index.html": "/DraglinesLocation/index.html",
+    "main.e6c13ad2.css.map": "/DraglinesLocation/static/css/main.e6c13ad2.css.map",
+    "main.eeb939fd.js.map": "/DraglinesLocation/static/js/main.eeb939fd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.eeb939fd.js"
+  ]
+}

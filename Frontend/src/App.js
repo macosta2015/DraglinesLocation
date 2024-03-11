@@ -15,7 +15,7 @@ function App() {
       setCoordinates({ latitude, longitude });
 
       // Save coordinates to the backend
-      await saveCoordinates({ latitude, longitude });
+      onSaveCoordinates({ latitude, longitude }); // Call onSaveCoordinates to send data to backend
 
       console.log("Coordinates saved:", { latitude, longitude });
     } catch (error) {
@@ -25,33 +25,25 @@ function App() {
     }
   };
 
+  const onSaveCoordinates = async (data) => {
+    try {
+      // Make a POST request to the backend endpoint '/Draglines'
+      await axios.post('https://common-spiders-behave.loca.lt/Draglines', data, {headers: {'Bypass-Tunnel-Reminder': 1}});
+      // await axios.post('http://localhost:3000/Draglines', data); // Update the URL to match your backend endpoint
+    } catch (error) {
+      console.error('Error saving coordinates:', error);
+    }
+  };
+
   const getGeoLocation = async () => {
     // Simulated function to get geolocation
     return { latitude: 27.994402, longitude: -81.760254 }; // Example coordinates for Florida
   };
 
-  //Updated code 
-  const saveCoordinates = async (coordinates) => {
-    try {
-      // Make a POST request to the backend endpoint '/Draglines'
-      await axios.post('http://localhost:3000/Draglines', coordinates); // Update the URL to match your backend endpoint
-    } catch (error) {
-      console.error('Error saving coordinates:', error);
-    }
-  };
-  
-  // const saveCoordinates = async (coordinates) => {
-  //   try {
-  //     await axios.post('http://localhost:5000/coordinates', coordinates);
-  //   } catch (error) {
-  //     console.error('Error saving coordinates:', error);
-  //   }
-  // };
-
   return (
     <div className="App">
       <header className="App-header">
-        <GeoLocation fetching={fetchingLocation} />
+        <GeoLocation fetching={fetchingLocation} onSaveCoordinates={onSaveCoordinates} /> {/* Pass onSaveCoordinates as prop */}
         <Button onClick={handleClick} />
       </header>
     </div>
@@ -59,3 +51,4 @@ function App() {
 }
 
 export default App;
+
